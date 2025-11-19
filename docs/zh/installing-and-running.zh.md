@@ -2,7 +2,7 @@
 
 NestJS Boilerplate 同时支持 [TypeORM](https://www.npmjs.com/package/typeorm) 与 [Mongoose](https://www.npmjs.com/package/mongoose)。默认情况下，TypeORM 使用 [PostgreSQL](https://www.postgresql.org/) 作为主数据库，你也可以替换为其他关系型数据库。
 
-两种数据库的切换基于[六边形架构](architecture.md#hexagonal-architecture)，这让你能在不改动业务的前提下切换数据访问层。
+两种数据库的切换基于[六边形架构](architecture.zh.md#hexagonal-architecture)，这让你能在不改动业务的前提下切换数据访问层。
 
 ---
 
