@@ -10,18 +10,26 @@ import { UserRepository } from '../../user.repository';
 import { UserMapper } from '../mappers/user.mapper';
 import { IPaginationOptions } from '../../../../../utils/types/pagination-options';
 
+// 用 TypeORM 的 Repository<UserEntity> 实现契约方法，做“怎么做”的细节，包括查询、分页、持久化。
+
 @Injectable()
 export class UsersRelationalRepository implements UserRepository {
   constructor(
+    // imports: [TypeOrmModule.forFeature([UserEntity])]
+    // 模块中注册了 UserEntity 的仓库提供者（Repository），
+    // 使其他提供者（如服务、控制器）可以通过 @InjectRepository(UserEntity) 注入该仓库。
     @InjectRepository(UserEntity)
     private readonly usersRepository: Repository<UserEntity>,
   ) {}
 
   async create(data: User): Promise<User> {
+    // 通过 UserMapper 在关系实体与领域模型之间进行转换，将领域模型 User 转换为持久化模型 UserEntity。
     const persistenceModel = UserMapper.toPersistence(data);
+    // 使用 TypeORM 的 save 方法将新实体保存到数据库中。
     const newEntity = await this.usersRepository.save(
       this.usersRepository.create(persistenceModel),
     );
+    // 将保存后的实体转换为领域模型 User 并返回。
     return UserMapper.toDomain(newEntity);
   }
 

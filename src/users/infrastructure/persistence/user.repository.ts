@@ -5,6 +5,9 @@ import { User } from '../../domain/user';
 
 import { FilterUserDto, SortUserDto } from '../../dto/query-user.dto';
 
+// 定义面向领域层的 CRUD 与查询方法签名，返回和接收的都是领域模型 User 。
+// 不包含任何 ORM 或数据库细节，仅是“要做什么”的约定。
+
 export abstract class UserRepository {
   abstract create(
     data: Omit<User, 'id' | 'createdAt' | 'deletedAt' | 'updatedAt'>,

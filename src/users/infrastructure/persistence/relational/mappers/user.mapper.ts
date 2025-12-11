@@ -6,6 +6,7 @@ import { User } from '../../../../domain/user';
 import { UserEntity } from '../entities/user.entity';
 
 export class UserMapper {
+  // 将数据库实体映射为领域模型， UserEntity -> User
   static toDomain(raw: UserEntity): User {
     const domainEntity = new User();
     domainEntity.id = raw.id;
@@ -26,6 +27,7 @@ export class UserMapper {
     return domainEntity;
   }
 
+  // 将领域模型映射为数据库实体， User -> UserEntity
   static toPersistence(domainEntity: User): UserEntity {
     let role: RoleEntity | undefined = undefined;
 
