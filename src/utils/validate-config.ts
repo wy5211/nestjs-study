@@ -6,6 +6,8 @@ function validateConfig<T extends object>(
   config: Record<string, unknown>,
   envVariablesClass: ClassConstructor<T>,
 ) {
+  // 反序列化 config 对象，将其转换为 envVariablesClass 类的实例。
+  // enableImplicitConversion 选项确保在转换过程中自动处理类型转换（例如，将字符串转换为数字）。
   const validatedConfig = plainToClass(envVariablesClass, config, {
     // 自动将字符串类型的环境变量（例如 .env 中的 "3000"）转换为目标类属性期望的类型（例如 number）
     enableImplicitConversion: true,
