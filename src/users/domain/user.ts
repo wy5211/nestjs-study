@@ -6,6 +6,17 @@ import { ApiProperty } from '@nestjs/swagger';
 
 const idType = Number;
 
+/*
+  domain ：领域模型（业务核心模型）
+  - 表达的是 业务世界里的“用户” ，跟数据库、HTTP 请求无关。
+  - 一般是一个干净的类，字段是业务关心的属性（id、email、role、status 等）。
+  - 不带 TypeORM、Swagger、class-validator 等框架装饰器。
+  - 只关心“用户是什么”“用户能做什么”，是 业务逻辑的心脏 。
+
+  可以理解为：
+    domain 层 = 纯业务模型 + 业务规则，尽量不依赖技术细节。
+*/
+
 export class User {
   @ApiProperty({
     type: idType,

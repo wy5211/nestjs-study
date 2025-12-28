@@ -17,6 +17,25 @@ import { FileEntity } from '../../../../../files/infrastructure/persistence/rela
 import { AuthProvidersEnum } from '../../../../../auth/auth-providers.enum';
 import { EntityRelationalHelper } from '../../../../../utils/relational-entity-helper'; // 提供基础实体能力与序列化
 
+
+/* 
+  infrastructure/persistence：持久化层（实体、仓库）
+  路径： src/users/infrastructure/persistence/relational/...
+
+  - entities ：例如 user.entity.ts
+    - 带 @Entity 、 @Column 等 TypeORM 装饰器；
+    - 字段贴合数据库结构（表名、列名、索引、关系等）；
+    - 面向的是 关系型数据库 ，是“表结构的代码表示”。
+
+  - repositories ：
+    - 比如 UsersRelationalRepository 实现 UserRepository 接口；
+    - 负责“怎么查库、怎么分页、怎么保存”等具体实现；
+    - 里面通过 UserMapper 在 UserEntity 和 User （domain 模型）之间做转换。
+  可以理解为：
+    persistence = “如何存储和读写数据” entity = “表结构 + 关系” repository = “用 ORM 操作表的具体细节”。
+*/
+
+
 // 仓库注入：只有标注为 @Entity 的类，才能通过 TypeOrmModule.forFeature([UserEntity]) 注册仓库，并在代码中用 @InjectRepository(UserEntity) 注入
 @Entity({
   name: 'user', // 指定数据库表名为 user
