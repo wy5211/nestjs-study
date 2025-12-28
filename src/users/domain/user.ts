@@ -30,6 +30,7 @@ export class User {
   @Expose({ groups: ['me', 'admin'] })
   email: string | null;
 
+  // 永远优先，不会返回 password 字段
   @Exclude({ toPlainOnly: true })
   password?: string;
 
@@ -47,6 +48,7 @@ export class User {
   @Expose({ groups: ['me', 'admin'] })
   socialId?: string | null;
 
+  // 没有写 @Expose / @Exclude 的字段，默认是“全部都暴露”
   @ApiProperty({
     type: String,
     example: 'John',

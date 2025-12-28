@@ -69,6 +69,8 @@ export class UsersController {
   @ApiCreatedResponse({
     type: User,
   })
+  // @SerializeOptions({ groups: ['admin'] }) 会告诉 ClassSerializerInterceptor ：
+  //  - 对本接口返回的对象，使用 groups: ['admin'] 进行序列化。
   @SerializeOptions({
     groups: ['admin'],
   })

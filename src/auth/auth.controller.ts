@@ -33,6 +33,8 @@ import { RefreshResponseDto } from './dto/refresh-response.dto';
 export class AuthController {
   constructor(private readonly service: AuthService) {}
 
+  // @SerializeOptions({ groups: ['me'] }) 会告诉 ClassSerializerInterceptor ：
+  //  - 对本接口返回的对象，使用 groups: ['me'] 进行序列化。
   @SerializeOptions({
     groups: ['me'],
   })
